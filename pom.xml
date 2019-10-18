@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>tech.zool</groupId>
+  <artifactId>env</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <!-- 项目信息 -->
+  <name>Project environment settings</name>
+  <description>环境配置</description>
+  <url>http://www.zool.tech</url>
+  <inceptionYear>2010</inceptionYear>
+  <organization>
+    <name>zooltech</name>
+    <url>http://www.zool.tech</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>zooltech</id>
+      <name>zooltech</name>
+      <email>zooltech@qq.com</email>
+      <url/>
+      <organization/>
+    </developer>
+  </developers>
+
+  <!-- <modules /> -->
+
+  <!-- 编译参数、框架、套件版本定义 -->
+  <properties>
+    <java.version>11</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+    <!-- 为使整个maven执行期间保持一致，设置编译版本用maven.compiler.source作为属性名，避免插件出错 -->
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+
+    <!-- 以下为相关构建插件版本 -->
+    <checkstyle.ver>8.25</checkstyle.ver>
+    <pmd.ver>6.18.0</pmd.ver>
+    <spotbugs.ver>3.1.12</spotbugs.ver>
+    <codeanalyzercfg.ver>1.0-SNAPSHOT</codeanalyzercfg.ver>
+	<!-- jdk11下jmockit和jacoco 0.8.4有冲突。解决：使用jdk8或者使用jacoco 0.8.3 -->
+    <jacoco-mvn.ver>0.8.5</jacoco-mvn.ver>
+
+    <mvn-clean.ver>3.1.0</mvn-clean.ver>
+    <mvn-compiler.ver>3.8.1</mvn-compiler.ver>
+    <!--<mvn-deploy.ver>2.8.2</mvn-deploy.ver> -->
+    <mvn-deploy.ver>3.0.0-M1</mvn-deploy.ver>
+    <!--<mvn-failsafe.ver>2.22.2</mvn-failsafe.ver> -->
+    <mvn-failsafe.ver>3.0.0-M3</mvn-failsafe.ver>
+    <!--<mvn-install.ver>2.5.2</mvn-install.ver> -->
+    <mvn-install.ver>3.0.0-M1</mvn-install.ver>
+    <mvn-resources.ver>3.1.0</mvn-resources.ver>
+    <mvn-site.ver>3.8.2</mvn-site.ver>
+    <!--<mvn-surefire.ver>2.22.2</mvn-surefire.ver> -->
+    <mvn-surefire.ver>3.0.0-M3</mvn-surefire.ver>
+    <mvn-jar.ver>3.1.2</mvn-jar.ver>
+    <mvn-war.ver>3.2.3</mvn-war.ver>
+    <mvn-shade.ver>3.2.1</mvn-shade.ver>
+    <mvn-source.ver>3.1.0</mvn-source.ver>
+    <mvn-javadoc.ver>3.1.1</mvn-javadoc.ver>
+    <mvn-checkstyle.ver>3.1.0</mvn-checkstyle.ver>
+    <mvn-pmd.ver>3.12.0</mvn-pmd.ver>
+
+    <mvn-antrun.ver>1.8</mvn-antrun.ver>
+    <mvn-assembly.ver>3.1.1</mvn-assembly.ver>
+    <mvn-dependency.ver>3.1.1</mvn-dependency.ver>
+    <mvn-enforcer.ver>3.0.0-M2</mvn-enforcer.ver>
+    <mvn-gpg.ver>1.6</mvn-gpg.ver>
+    <mvn-help.ver>3.2.0</mvn-help.ver>
+    <mvn-invoker.ver>3.2.0</mvn-invoker.ver>
+    <mvn-release.ver>2.5.3</mvn-release.ver>
+    <mvn-scm.ver>1.11.2</mvn-scm.ver>
+  </properties>
+
+  <issueManagement>
+    <system></system>
+    <url></url>
+  </issueManagement>
+  <ciManagement>
+    <system></system>
+    <url></url>
+    <notifiers/>
+  </ciManagement>
+
+  <!-- 依赖管理 <dependencyManagement /> -->
+
+  <!-- 依赖 <dependencies /> -->
+
+  <!-- 构建 -->
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <finalName>${project.artifactId}-${project.version}</finalName>
+    <!-- 用于过滤的配置文件。是以该pom文件路径作为参考 -->
+    <!-- <filters> <filter>project.properties</filter> </filters> -->
+
+    <!-- 项目源码目录，缺省：src/main/java <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory> -->
+    <!-- 项目脚本缺省：src/main/scripts -->
+    <!-- <scriptSourceDirectory/> -->
+    <!-- 测试代码目录，缺省：src/test/java <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory> -->
+
+    <!-- 构建结果输出目录，缺省：target <directory>target</directory> -->
+    <!-- class输出目录，缺省：target/classes <outputDirectory>target/classes</outputDirectory> -->
+    <!-- 测试class输出目录，缺省：target/test-classes <testOutputDirectory>target/test-classes</testOutputDirectory> -->
+
+    <!-- 构建插件管理 -->
+    <pluginManagement>
+      <plugins>
+        <!-- maven offical plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>${mvn-clean.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${mvn-compiler.ver}</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <showDeprecation>true</showDeprecation>
+            <showWarnings>true</showWarnings>
+            <!-- 注意以下配置需要fork设为true才生效。 -->
+            <fork>true</fork>
+            <!-- 指定编译器。如果你要用一个不同的JDK,可以修改executable标签指向自定义编译器的位置 -->
+            <!-- <executable>${ANOTHER_JAVA_HOME}/bin/javac</executable> -->
+            <!-- <compilerVersion>1.4</compilerVersion> -->
+            <meminitial>128m</meminitial>
+            <maxmem>1024m</maxmem>
+            <!-- <compilerArgs> <arg>-verbose</arg> <arg>-Xlint:all,-options,-path</arg> <arg>-Xmaxerrs=1000</arg> </compilerArgs> -->
+            <parameters>true</parameters>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${mvn-deploy.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${mvn-failsafe.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${mvn-install.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${mvn-resources.ver}</version>
+          <configuration>
+            <encoding>${project.build.sourceEncoding}</encoding>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${mvn-site.ver}</version>
+          <configuration>
+            <locales>cn,en</locales>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${mvn-surefire.ver}</version>
+          <configuration>
+            <testFailureIgnore>false</testFailureIgnore>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${mvn-jar.ver}</version>
+          <configuration>
+            <archive>
+              <addMavenDescriptor>false</addMavenDescriptor>
+              <manifestEntries>
+                <!-- 编译的字节码版本 -->
+                <Compilation-Target>${maven.compiler.target}</Compilation-Target>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>${mvn-war.ver}</version>
+          <configuration>
+            <archive>
+              <addMavenDescriptor>false</addMavenDescriptor>
+              <manifestEntries>
+                <Compilation-Target>${maven.compiler.target}</Compilation-Target>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>${mvn-shade.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${mvn-source.ver}</version>
+          <configuration>
+            <attach>true</attach>
+            <archive>
+              <addMavenDescriptor>false</addMavenDescriptor>
+            </archive>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${mvn-javadoc.ver}</version>
+          <configuration>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <show>protected</show>
+			<!-- 指定源代码版本，解决 javadoc: 错误 - 进行文档化的代码使用了模块，但在 https://docs.oracle.com/javase/8/docs/api/ 中定义的程序包在未命名模块中。 -->
+			<source>${maven.compiler.source}</source>
+            <docencoding>${project.reporting.outputEncoding}</docencoding>
+            <!-- docLint检查，参见 https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE -->
+            <!-- <doclint>all,-html</doclint> -->
+			<aggregate>true</aggregate>
+            <archive>
+              <addMavenDescriptor>false</addMavenDescriptor>
+            </archive>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-javadoc</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- 代码质量检测 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${mvn-checkstyle.ver}</version>
+          <configuration>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <!-- 是否检擦测试代码 -->
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <outputFileFormat>xml</outputFileFormat>
+            <logViolationsToConsole>true</logViolationsToConsole>
+            <failOnViolation>true</failOnViolation>
+            <!-- 设置哪种级别及以上才认为是Violation。可为error,warning,info -->
+            <violationSeverity>error</violationSeverity>
+            <linkXRef>true</linkXRef>
+            <configLocation>checkstyle/checkstyleRules.xml</configLocation>
+            <!-- 将basedir传入checkstyle，在checkstyle.xml中配置抑制文件 -->
+            <propertyExpansion>basedir=${basedir}</propertyExpansion>
+            <!-- 通过这里配置指定一个抑制配置文件,checkstyle.xml中不用指定 -->
+            <!-- <suppressionsLocation>${project.basedir}/checkstyle-suppressions.xml</suppressionsLocation> <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression> -->
+          </configuration>
+          <executions>
+            <execution>
+              <id>check-cs</id>
+              <phase>test</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>${checkstyle.ver}</version>
+            </dependency>
+            <!-- 此包存放checkstyle配置 -->
+            <dependency>
+              <groupId>tech.zool</groupId>
+              <artifactId>codeanalyzercfg</artifactId>
+              <version>${codeanalyzercfg.ver}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>${mvn-pmd.ver}</version>
+          <configuration>
+            <targetJdk>${maven.compiler.target}</targetJdk>
+            <!-- 停止构建前允许最大违规数量 -->
+            <maxAllowedViolations>0</maxAllowedViolations>
+            <!-- 优先级低于此阈值的规则将不会被评估。 -->
+            <minimumPriority>5</minimumPriority>
+            <!-- 是否检擦测试代码 -->
+            <includeTests>true</includeTests>
+            <!-- 有违反任何级别规则时是否中断构建 -->
+            <failOnViolation>false</failOnViolation>
+            <!-- 违反高于或等于此级别的规则就中断构建。级别：0~5逐渐降低 -->
+            <failurePriority>2</failurePriority>
+            <printFailingErrors>true</printFailingErrors>
+            <linkXref>true</linkXref>
+            <format>xml</format>
+            <!-- 排除不需要检查的源码,注意这个是相对源码/测试代码目录的 -->
+            <!-- <excludes> <exclude>**/com/baidu/**/*.java</exclude> <exclude>**/tech/zool/samples/xxxx/**/*.java</exclude> 
+              </excludes> -->
+            <rulesets>
+              <ruleset>pmd/pmdRules.xml</ruleset>
+              <!-- A rule set, that comes bundled with PMD -->
+              <!-- <ruleset>/category/java/bestpractices.xml</ruleset> -->
+              <!-- <ruleset>/category/java/codestyle.xml</ruleset> -->
+              <!-- <ruleset>/category/java/design.xml</ruleset> -->
+              <!-- <ruleset>/category/java/documentation.xml</ruleset> -->
+              <!-- <ruleset>/category/java/errorprone.xml</ruleset> -->
+              <!-- <ruleset>/category/java/multithreading.xml</ruleset> -->
+              <!-- <ruleset>/category/java/performance.xml</ruleset> -->
+              <!-- <ruleset>/category/java/security.xml</ruleset> -->
+              <!-- Custom local file system rule set <ruleset>d:\rulesets\strings.xml</ruleset> -->
+              <!-- Custom remote rule set accessed via a URL <ruleset>http://localhost/design.xml</ruleset> -->
+            </rulesets>
+            <!-- 超过此重复token数量，判定为重复代码 - -->
+            <minimumTokens>100</minimumTokens>
+          </configuration>
+          <executions>
+            <execution>
+              <id>check-pmd</id>
+              <phase>test</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>check-cpd</id>
+              <phase>test</phase>
+              <goals>
+                <goal>cpd-check</goal>
+              </goals>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>net.sourceforge.pmd</groupId>
+              <artifactId>pmd-core</artifactId>
+              <version>${pmd.ver}</version>
+            </dependency>
+            <dependency>
+              <groupId>net.sourceforge.pmd</groupId>
+              <artifactId>pmd-java</artifactId>
+              <version>${pmd.ver}</version>
+            </dependency>
+            <dependency>
+              <groupId>net.sourceforge.pmd</groupId>
+              <artifactId>pmd-javascript</artifactId>
+              <version>${pmd.ver}</version>
+            </dependency>
+            <dependency>
+              <groupId>net.sourceforge.pmd</groupId>
+              <artifactId>pmd-jsp</artifactId>
+              <version>${pmd.ver}</version>
+            </dependency>
+            <!-- 此包存放PMD配置 -->
+            <dependency>
+              <groupId>tech.zool</groupId>
+              <artifactId>codeanalyzercfg</artifactId>
+              <version>${codeanalyzercfg.ver}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <!-- findbugs后继者，不确认findbugs的参数 -->
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>3.1.12.2</version>
+          <configuration>
+            <includeTests>true</includeTests>
+            <!-- 设置分析工作的等级，可以为Min、Less、More(Default)、Max。 -->
+            <effort>More</effort>
+            <!-- 设置哪些可信度以上的问题才报告。Low、Medium(Default)和High (Low最严格,即：低可信问题也报告) -->
+            <!--<threshold>Low</threshold> -->
+            <failOnError>true</failOnError>
+            <xmlOutput>false</xmlOutput>
+            <!-- 配置价检查哪些 -->
+            <!-- <visitors>FindDeadLocalStores,UnreadFields</visitors> -->
+            <!-- 配置跳过哪些检查 -->
+            <!-- <omitVisitors>FindDeadLocalStores,UnreadFields</omitVisitors> -->
+            <!-- findbugs需要忽略的错误的配置文件，格式与findbugs相同 -->
+            <!-- <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile> -->
+            <!-- <includeFilterFile>spotbugs-include.xml</includeFilterFile> -->
+            <!-- 分析指定的类或包，多项用逗号分隔 -->
+            <!-- <onlyAnalyze>org.codehaus.mojo.findbugs.*,a.b.c.*</onlyAnalyze> -->
+          </configuration>
+          <executions>
+            <execution>
+              <id>check-spotbugs</id>
+              <phase>test</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>com.github.spotbugs</groupId>
+              <artifactId>spotbugs</artifactId>
+              <version>${spotbugs.ver}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-report-plugin</artifactId>
+          <version>${mvn-surefire.ver}</version>
+        </plugin>
+
+        <!-- 工具 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+          <executions>
+            <execution>
+              <phase>generate-resources</phase>
+              <goals>
+                <goal>run</goal>
+              </goals>
+              <configuration>
+                <target>
+                  <echo>java.home:${java.home}</echo>
+                </target>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>${mvn-assembly.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>${mvn-dependency.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${mvn-enforcer.ver}</version>
+        </plugin>
+        <!-- 签名插件需要安装gnupg工具www.gnupg.org -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>${mvn-gpg.ver}</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-help-plugin</artifactId>
+          <version>${mvn-help.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>${mvn-invoker.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>${mvn-release.ver}</version>
+          <configuration>
+            <useReleaseProfile>false</useReleaseProfile>
+            <tagBase>${scm.tags.addr}</tagBase>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-plugin</artifactId>
+          <version>${mvn-scm.ver}</version>
+          <configuration>
+            <connectionType>connection</connectionType>
+          </configuration>
+        </plugin>
+
+        <!-- 单元测试覆盖率 -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-mvn.ver}</version>
+          <executions>
+            <execution>
+              <id>default-prepare-agent</id>
+              <!-- 使用on-fly动态产生标识。缺省是在initialize阶段执行 -->
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>default-check</id>
+              <!-- 检查代码覆盖率是否符合配置，不符合则中断构建。缺省是在verify阶段执行 -->
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <configuration>
+                <!-- 检查条件不满足中断构建 -->
+                <haltOnFailure>true</haltOnFailure>
+                <rules>
+                  <rule>
+                    <!-- BUNDLE, PACKAGE, CLASS, SOURCEFILE or METHOD -->
+                    <element>BUNDLE</element>
+                    <limits>
+                      <limit>
+                        <!-- INSTRUCTION, LINE, BRANCH, COMPLEXITY, METHOD, CLASS -->
+                        <counter>LINE</counter>
+                        <!-- COVEREDRATIO, COVEREDCOUNT, MISSEDCOUNT, MISSEDRATIO, TOTALCOUNT -->
+                        <value>COVEREDRATIO</value>
+                        <minimum>0.3</minimum>
+                      </limit>
+                    </limits>
+                  </rule>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>default-report</id>
+              <!-- 在target/site目录生成报告。缺省是在verify阶段执行 -->
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+
+        <!-- This plugin's configuration is used to store Eclipse m2e settings only. 这是eclipse m2e插件的配置，设置忽略一些插件(这里是checkstyle)中的execute配置，防止eclipse报异常。此配置和maven无关。 -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <versionRange>[3.0.0,)</versionRange>
+                    <goals>
+                      <goal>check</goal>
+                      <goal>checkstyle</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <versionRange>[3.0.0,)</versionRange>
+                    <goals>
+                      <goal>check</goal>
+                      <goal>cpd-check</goal>
+                      <goal>pmd</goal>
+                      <goal>cpd</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <versionRange>[1.0.0,)</versionRange>
+                    <goals>
+                      <goal>check</goal>
+                      <goal>spotbugs</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <versionRange>[1.0,)</versionRange>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
