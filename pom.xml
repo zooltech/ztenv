@@ -47,7 +47,7 @@
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
     <!-- 以下为相关构建插件版本 -->
-    <checkstyle.ver>8.25</checkstyle.ver>
+    <checkstyle.ver>8.29</checkstyle.ver>
     <pmd.ver>6.18.0</pmd.ver>
     <spotbugs.ver>3.1.12</spotbugs.ver>
     <codeanalyzercfg.ver>1.0-SNAPSHOT</codeanalyzercfg.ver>
