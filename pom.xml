@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
+  <!-- <parent/> -->
   <groupId>tech.zool</groupId>
   <artifactId>env</artifactId>
   <version>0.1-SNAPSHOT</version>
@@ -35,7 +35,22 @@
     </developer>
   </developers>
 
+  <!-- <contributors/> -->
+  <!-- <mailingLists/> -->
+  <!-- <prerequisites/> -->
   <!-- <modules /> -->
+  <!-- <scm/> -->
+  <issueManagement>
+    <system></system>
+    <url></url>
+  </issueManagement>
+  <ciManagement>
+    <system></system>
+    <url></url>
+    <notifiers/>
+  </ciManagement>
+
+  <!-- <distributionManagement/> -->
 
   <!-- 编译参数、框架、套件版本定义 -->
   <properties>
@@ -47,57 +62,62 @@
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
     <!-- 以下为相关构建插件版本 -->
-    <checkstyle.ver>8.25</checkstyle.ver>
-    <pmd.ver>6.18.0</pmd.ver>
-    <spotbugs.ver>3.1.12</spotbugs.ver>
+    <checkstyle.ver>8.34</checkstyle.ver>
+    <pmd.ver>6.25.0</pmd.ver>
+    <spotbugs.ver>4.0.6</spotbugs.ver>
     <codeanalyzercfg.ver>1.0-SNAPSHOT</codeanalyzercfg.ver>
-	<!-- jdk11下jmockit和jacoco 0.8.4有冲突。解决：使用jdk8或者使用jacoco 0.8.3 -->
+	<!-- jdk11下jmockit和jacoco 0.8.4以上有冲突。解决：使用jdk8或者使用jacoco 0.8.3 -->
     <jacoco-mvn.ver>0.8.5</jacoco-mvn.ver>
 
     <mvn-clean.ver>3.1.0</mvn-clean.ver>
     <mvn-compiler.ver>3.8.1</mvn-compiler.ver>
-    <!--<mvn-deploy.ver>2.8.2</mvn-deploy.ver> -->
+												  
     <mvn-deploy.ver>3.0.0-M1</mvn-deploy.ver>
-    <!--<mvn-failsafe.ver>2.22.2</mvn-failsafe.ver> -->
-    <mvn-failsafe.ver>3.0.0-M3</mvn-failsafe.ver>
-    <!--<mvn-install.ver>2.5.2</mvn-install.ver> -->
+													   
+    <mvn-failsafe.ver>3.0.0-M5</mvn-failsafe.ver>
+													
     <mvn-install.ver>3.0.0-M1</mvn-install.ver>
     <mvn-resources.ver>3.1.0</mvn-resources.ver>
-    <mvn-site.ver>3.8.2</mvn-site.ver>
-    <!--<mvn-surefire.ver>2.22.2</mvn-surefire.ver> -->
-    <mvn-surefire.ver>3.0.0-M3</mvn-surefire.ver>
-    <mvn-jar.ver>3.1.2</mvn-jar.ver>
-    <mvn-war.ver>3.2.3</mvn-war.ver>
-    <mvn-shade.ver>3.2.1</mvn-shade.ver>
-    <mvn-source.ver>3.1.0</mvn-source.ver>
-    <mvn-javadoc.ver>3.1.1</mvn-javadoc.ver>
-    <mvn-checkstyle.ver>3.1.0</mvn-checkstyle.ver>
-    <mvn-pmd.ver>3.12.0</mvn-pmd.ver>
+    <mvn-site.ver>3.9.1</mvn-site.ver>
+    <mvn-surefire.ver>3.0.0-M5</mvn-surefire.ver>
+    <mvn-jar.ver>3.2.0</mvn-jar.ver>
+    <mvn-war.ver>3.3.0</mvn-war.ver>
+    <mvn-shade.ver>3.2.4</mvn-shade.ver>
+    <mvn-source.ver>3.2.1</mvn-source.ver>
+    <mvn-javadoc.ver>3.2.0</mvn-javadoc.ver>
+    <mvn-checkstyle.ver>3.1.1</mvn-checkstyle.ver>
+    <mvn-pmd.ver>3.13.0</mvn-pmd.ver>
+    <mvn-spotbugs.ver>4.0.4</mvn-spotbugs.ver>
 
-    <mvn-antrun.ver>1.8</mvn-antrun.ver>
-    <mvn-assembly.ver>3.1.1</mvn-assembly.ver>
-    <mvn-dependency.ver>3.1.1</mvn-dependency.ver>
-    <mvn-enforcer.ver>3.0.0-M2</mvn-enforcer.ver>
+    <mvn-antrun.ver>3.0.0</mvn-antrun.ver>
+    <mvn-archetype.ver>3.1.2</mvn-archetype.ver>
+    <mvn-assembly.ver>3.3.0</mvn-assembly.ver>
+    <mvn-dependency.ver>3.1.2</mvn-dependency.ver>
+    <mvn-enforcer.ver>3.0.0-M3</mvn-enforcer.ver>
     <mvn-gpg.ver>1.6</mvn-gpg.ver>
     <mvn-help.ver>3.2.0</mvn-help.ver>
-    <mvn-invoker.ver>3.2.0</mvn-invoker.ver>
-    <mvn-release.ver>2.5.3</mvn-release.ver>
+    <mvn-invoker.ver>3.2.1</mvn-invoker.ver>
+    <mvn-release.ver>3.0.0-M1</mvn-release.ver>
     <mvn-scm.ver>1.11.2</mvn-scm.ver>
   </properties>
 
-  <issueManagement>
-    <system></system>
-    <url></url>
-  </issueManagement>
-  <ciManagement>
-    <system></system>
-    <url></url>
-    <notifiers/>
-  </ciManagement>
+				   
+					 
+			   
+					
+				
+					 
+			   
+				
+				 
 
   <!-- 依赖管理 <dependencyManagement /> -->
 
   <!-- 依赖 <dependencies /> -->
+
+  <!-- 仓库 <repositories/> -->
+
+  <!-- 插件库 <pluginRepositories/> -->
 
   <!-- 构建 -->
   <build>
@@ -245,7 +265,7 @@
 			<!-- 指定源代码版本，解决 javadoc: 错误 - 进行文档化的代码使用了模块，但在 https://docs.oracle.com/javase/8/docs/api/ 中定义的程序包在未命名模块中。 -->
 			<source>${maven.compiler.source}</source>
             <docencoding>${project.reporting.outputEncoding}</docencoding>
-            <!-- docLint检查，参见 https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE -->
+            <!-- docLint检查，缺省开启，参见 https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE -->
             <!-- <doclint>all,-html</doclint> -->
 			<aggregate>true</aggregate>
             <archive>
@@ -270,10 +290,10 @@
           <configuration>
             <encoding>${project.build.sourceEncoding}</encoding>
             <!-- 是否检擦测试代码 -->
-            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <includeTestSourceDirectory>false</includeTestSourceDirectory>
             <outputFileFormat>xml</outputFileFormat>
             <logViolationsToConsole>true</logViolationsToConsole>
-            <failOnViolation>true</failOnViolation>
+            <failOnViolation>false</failOnViolation>
             <!-- 设置哪种级别及以上才认为是Violation。可为error,warning,info -->
             <violationSeverity>error</violationSeverity>
             <linkXRef>true</linkXRef>
@@ -394,14 +414,14 @@
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>3.1.12.2</version>
+          <version>${mvn-spotbugs.ver}</version>
           <configuration>
             <includeTests>true</includeTests>
             <!-- 设置分析工作的等级，可以为Min、Less、More(Default)、Max。 -->
             <effort>More</effort>
             <!-- 设置哪些可信度以上的问题才报告。Low、Medium(Default)和High (Low最严格,即：低可信问题也报告) -->
             <!--<threshold>Low</threshold> -->
-            <failOnError>true</failOnError>
+            <failOnError>false</failOnError>
             <xmlOutput>false</xmlOutput>
             <!-- 配置价检查哪些 -->
             <!-- <visitors>FindDeadLocalStores,UnreadFields</visitors> -->
@@ -440,7 +460,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>1.8</version>
+          <version>${mvn-antrun.ver}</version>
           <executions>
             <execution>
               <phase>generate-resources</phase>
@@ -454,6 +474,11 @@
               </configuration>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>${mvn-archetype.ver}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -555,6 +580,7 @@
             <execution>
               <id>default-report</id>
               <!-- 在target/site目录生成报告。缺省是在verify阶段执行 -->
+              <phase>test</phase>
               <goals>
                 <goal>report</goal>
               </goals>
@@ -635,4 +661,6 @@
       </plugins>
     </pluginManagement>
   </build>
+  <!-- <reporting/> -->
+  <!-- <profiles/> -->
 </project>
