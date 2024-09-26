@@ -93,7 +93,7 @@
     <mvn-lombok.ver>1.18.20.0</mvn-lombok.ver>
 
     <mvn-antrun.ver>3.1.0</mvn-antrun.ver>
-    <mvn-archetype.ver>3.2.1</mvn-archetype.ver>
+    <mvn-archetype.ver>3.3.0</mvn-archetype.ver>
     <mvn-assembly.ver>3.4.2</mvn-assembly.ver>
     <mvn-dependency.ver>3.3.0</mvn-dependency.ver>
     <mvn-enforcer.ver>3.1.0</mvn-enforcer.ver>
